@@ -17,7 +17,7 @@ app.get("/", (req ,res)=> {
 
 const httpPort: Number = 5000
 
-connect(`mongodb://ds247637.mlab.com:47637/heroku_qbwf7dtm/user-profile`, { useNewUrlParser: true }).then(() => console.log(`Established the Database connection`))
+connect(`mongodb://ds247637.mlab.com:47637/heroku_qbwf7dtm`, { useNewUrlParser: true }).then(() => console.log(`Established the Database connection`))
 
 const server = new ApolloServer({
   typeDefs: typeDefs,

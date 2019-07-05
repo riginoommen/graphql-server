@@ -17,7 +17,7 @@ app.get("/", (req ,res)=> {
 
 const httpPort: Number = 5000
 
-connect(`mongodb+srv://graphql-user:graphqlpwd@cluster0-rhzev.mongodb.net/userprofile?retryWrites=true&w=majority`, { useNewUrlParser: true }).then(() => console.log(`Established the Database connection`))
+connect(`mongodb://localhost/user-profile`, { useNewUrlParser: true }).then(() => console.log(`Established the Database connection`))
 
 const server = new ApolloServer({
   typeDefs: typeDefs,

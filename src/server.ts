@@ -5,6 +5,7 @@ import { connect } from "mongoose";
 
 import { resolver as resolvers} from "./modules/profile/resolver";
 import { typeDef as typeDefs } from "./modules/profile/typeDef";
+const path = require("path");
 
 // import { resolver as userResolver } from "./modules/users/resolver";
 // import { typeDef as userTypeDef } from "./modules/users/typeDef";
@@ -12,10 +13,9 @@ import { typeDef as typeDefs } from "./modules/profile/typeDef";
 const app = express();
 
 app.get("/", (req ,res)=> {
-    res.send(`Welcome to GraphQL Server`)
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-const httpPort: Number = 5000
 
 connect(`mongodb+srv://graphqluser:graphqlpwd@mongo-rhzev.mongodb.net/graphql?retryWrites=true&w=majority`, { useNewUrlParser: true }).then(() => console.log(`Established the Database connection`))
 
@@ -27,8 +27,8 @@ const server = new ApolloServer({
 server.applyMiddleware({ app: app });
 const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
-
-httpServer.listen(httpPort, () => {
-  console.log(`🚀 Server ready at http://localhost:${httpPort}${server.graphqlPath}`)
-  console.log(`🚀 Subscriptions ready at ws://localhost:${httpPort}${server.subscriptionsPath}`)
+const port = process.env.PORT || 5000;
+httpServer.listen(port, () => {
+  console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`)
+  console.log(`🚀 Subscriptions ready at ws://localhost:${port}${server.subscriptionsPath}`)
 })

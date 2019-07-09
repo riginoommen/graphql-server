@@ -21,7 +21,8 @@ connect(`mongodb+srv://graphqluser:graphqlpwd@mongo-rhzev.mongodb.net/graphql?re
 
 const server = new ApolloServer({
   typeDefs: typeDefs,
-  resolvers: resolvers
+  resolvers: resolvers,
+  playground: true
 });
 
 server.applyMiddleware({ app: app });

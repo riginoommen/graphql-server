@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
-    "serve": "rm -rf build && tsc && node ./build/server.js"
+    "prestart": "cp ./src/*.html ./build/",
+    "serve": "rm -rf build && tsc && cp ./src/*.html ./build/ &&  node ./build/server.js"
   },
   "keywords": [
     "express",
@@ -26,5 +27,8 @@
     "lodash": "^4.17.11",
     "mongoose": "^5.5.15",
     "typescript": "^3.5.2"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.1.0"
   }
 }

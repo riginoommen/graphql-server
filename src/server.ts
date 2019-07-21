@@ -10,7 +10,8 @@ app.get("/", (req ,res)=> {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-connect(`mongodb://localhost:27017/graphql`, { useNewUrlParser: true }).then(() => console.log(`Established the Database connection`))
+connect(`mongodb+srv://graphqluser:graphqlpwd@mongo-rhzev.mongodb.net/graphql?retryWrites=true&w=majority`, { useNewUrlParser: true }).then(() => console.log(`Established the Database connection`));
+
 const options: Options = {
   port: process.env.port || 8000,
   endpoint: '/graphql',

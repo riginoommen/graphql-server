@@ -1,7 +1,8 @@
-import { gql } from "apollo-server-express";
+import { makeExecutableSchema } from "graphql-tools";
 
-export const typeDef = gql`
+export const typeDef = `
 type UserType {
+    _id: String
     name: String
     age: Int
     place: String
@@ -10,6 +11,7 @@ type UserType {
 }
 
 input UserInput {
+    _id: String
     name: String
     age: Int
     place: String
@@ -20,8 +22,8 @@ input UserInput {
 type Query {
     # List Users
     listUsers: [UserType]
-    # Fetch a User with uid
-    getUser(uid: String): UserType
+    # Fetch a User with name
+    getUser(name: String): UserType
 }
 
 type Mutation {
@@ -33,3 +35,4 @@ type Mutation {
     updateUser(input: UserInput): UserType
 }
 `;
+
